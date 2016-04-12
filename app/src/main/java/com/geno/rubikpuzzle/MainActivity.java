@@ -70,13 +70,41 @@ public class MainActivity extends Activity
 
 	public void main()
 	{
-		for (int i = 0; i < 3 * height - 1; i++)
+		LinearLayout ruler = new LinearLayout(this);
+		TextView st = new TextView(this);
+		st.setWidth(64);
+		st.setHeight(64);
+		st.setTextSize(10);
+		ruler.addView(st);
+		for (int j = 0; j < 3 * width; j++)
+		{
+			TextView t = new TextView(this);
+			t.setWidth(64);
+			t.setHeight(64);
+			t.setTextSize(10);
+			t.setText(j / 3 + "." + (j % 3 + 1));
+			t.setTextColor((j / 3) % 2 == 0 ? 0xFF8080FF : 0xFFFF8080);
+			t.setGravity(Gravity.CENTER);
+			t.setTypeface(Typeface.MONOSPACE);
+			ruler.addView(t);
+		}
+		l.addView(ruler);
+		for (int i = 0; i < 3 * height; i++)
 		{
 			LinearLayout horiz = new LinearLayout(this);
-			for (int j = 0; j < 3 * width - 1; j++)
+			TextView t = new TextView(this);
+			t.setWidth(64);
+			t.setHeight(64);
+			t.setTextSize(10);
+			t.setText(i / 3 + "." + (i % 3 + 1));
+			t.setTextColor((i / 3) % 2 == 0 ? 0xFFFF8080 : 0xFF8080FF);
+			t.setGravity(Gravity.CENTER);
+			t.setTypeface(Typeface.MONOSPACE);
+			horiz.addView(t);
+			for (int j = 0; j < 3 * width; j++)
 			{
 				final LinearLayout vert = new LinearLayout(this);
-				LayoutParams p = new LayoutParams(48, 48);
+				LayoutParams p = new LayoutParams(64, 64);
 				vert.setLayoutParams(p);
 				vert.setBackgroundColor(getColorBox(0));
 				vert.setOnClickListener(new OnClickListener()
